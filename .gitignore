@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.DS_Store
+.claude/
+# Re-downloadable sources; the Abbott PDF is not ours to redistribute.
+data/raw/

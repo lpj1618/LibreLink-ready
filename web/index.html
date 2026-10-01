@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LibreLink 手機檢測</title>
+  <meta name="description" content="檢查這支手機能不能使用 FreeStyle LibreLink App">
+  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>LibreLink 手機檢測</h1>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="check" aria-selected="true">檢測這支手機</button>
+      <button role="tab" data-tab="search" aria-selected="false">查詢型號</button>
+      <button role="tab" data-tab="qr" aria-selected="false">QR Code</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 檢測這支手機 -->
+    <section id="tab-check" role="tabpanel">
+      <div id="result" class="result" aria-live="polite">
+        <p class="loading">檢查中…</p>
+      </div>
+
+      <div id="nfc" class="card" hidden>
+        <h2>NFC 檢查</h2>
+        <p>掃描感測器需要開啟 NFC。按下按鈕檢查這支手機的 NFC 是否已開啟。</p>
+        <button id="nfc-btn" class="btn">檢查 NFC</button>
+        <p id="nfc-result" class="nfc-result" aria-live="polite"></p>
+      </div>
+
+      <details class="card tech">
+        <summary>技術資訊（給業務看）</summary>
+        <dl id="tech"></dl>
+      </details>
+    </section>
+
+    <!-- 查詢型號 -->
+    <section id="tab-search" role="tabpanel" hidden>
+      <div class="card">
+        <label for="q" class="big-label">輸入手機名稱或型號</label>
+        <input id="q" type="search" placeholder="例如：S23 Ultra、A79、SM-A156E" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <p class="hint">型號可以在手機「設定 → 關於手機」看到。</p>
+      </div>
+      <ul id="search-results" class="search-results" aria-live="polite"></ul>
+      <details class="card">
+        <summary>官方清單上的系統版本</summary>
+        <div id="os-lists"></div>
+      </details>
+    </section>
+
+    <!-- QR Code -->
+    <section id="tab-qr" role="tabpanel" hidden>
+      <div class="card qr-card">
+        <p class="big-label">請客戶用手機相機掃描</p>
+        <div id="qr" class="qr"></div>
+        <p id="qr-url" class="qr-url"></p>
+        <p class="hint">iPhone：打開「相機」對準即可。<br>Android：打開相機或 Chrome 的掃描功能。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p id="source"></p>
+    <p>本工具不是 Abbott 官方工具，結果僅供參考，請以官方最新相容性清單為準。本頁不會收集或傳送任何個人資料。</p>
+  </footer>
+
+  <template id="guides">
+    <div data-guide="ios-about">打開「設定」→「一般」→「關於本機」，查看「型號名稱」和「iOS 版本」。</div>
+    <div data-guide="ios-update">打開「設定」→「一般」→「軟體更新」，安裝最新版本。</div>
+    <div data-guide="ios-open-safari">點右上角或右下角的「⋯」選單 →「用 Safari 開啟」（或「以預設瀏覽器開啟」）。</div>
+    <div data-guide="android-open-chrome">點右上角的「⋮」選單 →「用 Chrome 開啟」（或「以其他瀏覽器開啟」）。</div>
+    <div data-guide="android-model">打開「設定」→「關於手機」，查看「型號名稱」或「型號」，再到「查詢型號」輸入。</div>
+    <div data-guide="android-version">打開「設定」→「關於手機」→「軟體資訊」，查看「Android 版本」。</div>
+    <div data-guide="android-update">打開「設定」→「軟體更新」（或「系統」→「系統更新」），安裝最新版本。</div>
+    <div data-guide="samsung-patch">打開「設定」→「關於手機」→「軟體資訊」，查看「Android 安全性修補程式等級」的日期。</div>
+    <div data-guide="nfc-on">打開「設定」→「連接」（或「已連結的裝置」）→ 開啟「NFC」。</div>
+    <div data-guide="not-listed">可以考慮：改用專用讀取機、改用家人的相容手機，或換機時參考官方清單。</div>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
