@@ -42,7 +42,7 @@ python3 -m http.server 8123 --directory web
 測試：
 
 ```bash
-node --test tests/
+node --test tests/*.test.mjs
 ```
 
 ## 每季更新
